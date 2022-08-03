@@ -1,0 +1,1 @@
+npx webpack build --env development --config ./boilerplate.ui/webpack.config.js --stats verbose 

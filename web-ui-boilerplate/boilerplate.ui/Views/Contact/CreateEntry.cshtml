@@ -1,0 +1,124 @@
+﻿@model ViewModel<ContactCreateEntryViewModel>
+@{
+    ViewData["Title"] = "Create Contact";
+}
+<h1>@ViewData["Title"]</h1>
+<form action="@UIRoutesHelper.Contact.CreateEntry.GetUrl()" role="form" method="post" asp-antiforgery="true">
+    <div class="form-group">
+        <label asp-for="Data.Form.FirstName" class="control-label">Firstname:</label>
+        <input asp-for="Data.Form.FirstName" class="form-control">
+        <span asp-validation-for="Data.Form.FirstName" class="text-danger text-break"></span>
+    </div>
+        <div class="form-group">
+        <label asp-for="Data.Form.LastName" class="control-label">LastName:</label>
+        <input asp-for="Data.Form.LastName" class="form-control">
+        <span asp-validation-for="Data.Form.LastName" class="text-danger text-break"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Data.Form.Title" class="control-label">Title:</label>
+        <input asp-for="Data.Form.Title" class="form-control">
+        <span asp-validation-for="Data.Form.Title" class="text-danger text-break"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Data.Form.Company" class="control-label">Company:</label>
+        <input asp-for="Data.Form.Company" class="form-control">
+        <span asp-validation-for="Data.Form.Company" class="text-danger text-break"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Data.Form.Email" class="control-label">Email:</label>
+        <input asp-for="Data.Form.Email" class="form-control">
+        <span asp-validation-for="Data.Form.Email" class="text-danger text-break"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Data.Form.PhoneCell" class="control-label">PhoneCell:</label>
+        <input asp-for="Data.Form.PhoneCell" class="form-control">
+        <span asp-validation-for="Data.Form.PhoneCell" class="text-danger text-break"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Data.Form.PhoneBusiness" class="control-label">PhoneBusiness:</label>
+        <input asp-for="Data.Form.PhoneBusiness" class="form-control">
+        <span asp-validation-for="Data.Form.PhoneBusiness" class="text-danger text-break"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Data.Form.Fax" class="control-label">Fax:</label>
+        <input asp-for="Data.Form.Fax" class="form-control">
+        <span asp-validation-for="Data.Form.Fax" class="text-danger text-break"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Data.Form.AddressLine1" class="control-label">AddressLine1:</label>
+        <input asp-for="Data.Form.AddressLine1" class="form-control">
+        <span asp-validation-for="Data.Form.AddressLine1" class="text-danger text-break"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Data.Form.AddressLine2" class="control-label">AddressLine2:</label>
+        <input asp-for="Data.Form.AddressLine2" class="form-control">
+        <span asp-validation-for="Data.Form.AddressLine2" class="text-danger text-break"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Data.Form.City" class="control-label">City:</label>
+        <input asp-for="Data.Form.City" class="form-control">
+        <span asp-validation-for="Data.Form.City" class="text-danger text-break"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Data.Form.State" class="control-label">State:</label>
+        <input asp-for="Data.Form.State" class="form-control">
+        <span asp-validation-for="Data.Form.State" class="text-danger text-break"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Data.Form.Zip" class="control-label">Zip:</label>
+        <input asp-for="Data.Form.Zip" class="form-control">
+        <span asp-validation-for="Data.Form.Zip" class="text-danger text-break"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Data.Form.IsActive" class="control-label">IsActive:</label>
+        <input asp-for="Data.Form.IsActive" class="form-control">
+        <span asp-validation-for="Data.Form.IsActive" class="text-danger text-break"></span>
+    </div>
+    <h2>Relationships</h2>
+    <hr />
+    <div class="card form-group">    
+        <span >
+            <label class="control-label">Add a Music label, Musician or Platform</label>
+        </span>  
+        <div class="form-group">
+            <select id="contactList" class="form-select form-control input-md">
+                @foreach (var p in this.Model.Data.ContactItems)
+                {
+                    <option value="@p.Id" data-name="@p.Name" data-type="@p.Type">@($"{p.Name} ({p.Type})")</option>
+                }
+            </select>
+            <button type="button" class="btn btn-primary btn-md" id="addButton">Add</button>
+        </div>
+    </div>
+    <div id="musicLabels" class="card form-group">
+        <label class="control-label">Music Labels</label>
+        <hr />
+        <div class="tags"></div>
+        @Html.HiddenFor(m=>m.Data.Form.MusicLabels, new {id="musicLabelContacts"})
+    </div>
+    <div id="musicians" class="card form-group">
+        <label class="control-label">Musicians</label>
+        <hr />
+        <div class="tags"></div>
+        @Html.HiddenFor(m=>m.Data.Form.Musicians,new {id="musicianContacts"})
+    </div>
+    <div id="platforms" class="card form-group">
+        <label class="control-label">Platforms</label>
+        <hr />
+        <div class="tags"></div>
+        @Html.HiddenFor(m=>m.Data.Form.Platforms,new {id="platformContacts"})
+    </div>
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    <div class="text-center">
+        <a href="@UIRoutesHelper.Contact.GetEntries.GetUrl()" class="btn btn-light btn-md">Close</a>
+        <button type="submit" class="btn btn-primary btn-md">Save</button>
+    </div>
+
+<li id="contactTag" class="list-group-item hidden">
+    <span class="badge"></span>
+    <i class="fa fa-remove" style="color: red;"></i>
+</li>
+
+</form>

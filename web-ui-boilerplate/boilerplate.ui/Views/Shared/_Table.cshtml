@@ -1,0 +1,58 @@
+﻿@model boilerplate.ui.Models.TableViewModel
+
+<h1>@Model.Name</h1>
+<div class="my-2 float-right">
+    <a href="@Model.CreateUrl()" class="btn btn-primary">Create</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                @foreach (var column in Model.Columns)
+                {
+                    var name = column.ColumnName;
+                    if (column.IsEdit || column.IsRemove)
+                    {
+                        name = "";
+                    }
+                    <th>@name</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+            <tr>
+                @foreach (var column in Model.Columns)
+                {
+                    if (!column.IsEdit && !column.IsRemove)
+                    {
+                        <td>@column.Value(item, column.ModelField)</td>
+                    }
+                    else
+                    {
+                        var idColumn = Model.Columns.FirstOrDefault(s => s.IsIdentifier);
+                        if (idColumn != null)
+                        {
+                            var idValue = idColumn.Value(item, idColumn.ModelField);
+                            if (column.IsEdit)
+                            {
+                                <td><a class="btn btn-link" href="@Model.UpdateUrl(idValue)">Edit</a></td>
+                            }
+                            else if (column.IsRemove)
+                            {
+                                <td>
+                                    <form action="@Model.DeleteUrl(idValue)" role="form" method="post" asp-antiforgery="true">
+                                        <button type="submit" class="btn btn-link">Remove</button>
+                                    </form>
+                                </td>
+                            }
+                        }
+                    }
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,1 @@
+dotnet ef --startup-project ../boilerplate.api/ migrations add MusicLabelId

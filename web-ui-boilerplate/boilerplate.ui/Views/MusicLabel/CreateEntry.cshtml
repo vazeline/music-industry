@@ -1,0 +1,16 @@
+﻿@model ViewModel<MusicLabelCreateEntryViewModel>
+@{
+    ViewData["Title"] = "Create MusicLabel";
+}
+<h1>@ViewData["Title"]</h1>
+<form action="@UIRoutesHelper.MusicLabel.CreateEntry.GetUrl()" role="form" method="post" asp-antiforgery="true">
+    <div class="form-group">
+        <label asp-for="Data.Form.Name" class="control-label">Name:*</label>
+        <input asp-for="Data.Form.Name" class="form-control">
+        <span asp-validation-for="Data.Form.Name" class="text-danger text-break"></span>
+    </div>
+    <div class="text-center">
+        <a href="@UIRoutesHelper.MusicLabel.GetEntries.GetUrl()" class="btn btn-light btn-md">Close</a>
+        <button type="submit" class="btn btn-primary btn-md">Save</button>
+    </div>
+</form>

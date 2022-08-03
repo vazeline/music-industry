@@ -1,0 +1,42 @@
+{
+    "name": "boilerplate.ui",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --env production",
+    "dev": "webpack --watch",
+    "start": "webpack --env development --watch"
+  },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/core": "^7.12.10",
+        "@babel/preset-env": "^7.12.10",
+        "autoprefixer": "^9.8.6",
+        "babel-loader": "^8.2.2",
+        "css-loader": "^3.6.0",
+        "cssnano": "^4.1.10",
+        "extract-loader": "^4.0.3",
+        "file-loader": "^5.0.2",
+        "node-sass": "^4.14.1",
+        "postcss-loader": "^3.0.0",
+        "sass-loader": "^8.0.2",
+        "style-loader": "^1.3.0",
+        "terser-webpack-plugin": "^4.2.2",
+        "uglify-js": "^3.13.10",
+        "uglifyjs-webpack-plugin": "^2.2.0",
+        "webpack": "^4.44.2",
+        "webpack-cli": "^3.3.12",
+        "webpack-merge": "^5.7.2",
+        "webpack-merge-and-include-globally": "2.1.26"
+    },
+    "dependencies": {
+        "bootstrap": "^4.6.1",
+        "bootstrap-scss": "^4.6.1",
+        "jquery": "^3.6.0",
+        "jquery-validation": "^1.19.3",
+        "jquery-validation-unobtrusive": "^3.2.12"
+    }
+}

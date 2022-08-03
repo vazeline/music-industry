@@ -1,0 +1,7 @@
+﻿@model ViewModel<ContactGetEntriesViewModel>
+@{
+    ViewData["Title"] = "Contacts";
+}
+
+<partial name="_Table" model="Model.Data.GetTableViewModel(ViewData)" />
+<partial name="_Paging" model="Model.Paging" />
