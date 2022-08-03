@@ -142,6 +142,7 @@ The UI should contain screens for listing, creating/editing contacts.
 ![193f6cb0-aba1-41cf-b7fa-e68ee49a68a0](https://user-images.githubusercontent.com/3456280/182712009-662cb657-8cfa-47e9-ab1f-015e2d836ae9.png)
 
 Code review: 
+
 API:
 1) MusicianContacts/MusicLabelContacts/PlatformContacts
 - схема таблиц не соответствует требованиям, поле Id должно быть первичным ключом
